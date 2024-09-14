@@ -70,6 +70,8 @@ const Feedback = styled.p`
   font-size: 18px;
   color: ${(props) => (props.correct ? 'green' : 'red')};
   text-align: center;
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  transition: opacity 2s ease-out;
 `;
 
 const Timer = styled.p`
@@ -86,10 +88,13 @@ const Lobby = () => {
   const [feedback, setFeedback] = useState('');
   const [time, setTime] = useState(0);
   const [timerActive, setTimerActive] = useState(true); // Timer state
+  const [feedbackVisible, setFeedbackVisible] = useState(false); // Feedback visibility state
   const timerRef = useRef(null);
+  const wsRef = useRef(null);
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:3001');
+    wsRef.current = ws;
 
     ws.onopen = () => {
       console.log('Connected to WebSocket server');
@@ -103,6 +108,10 @@ const Lobby = () => {
         setPlayerId(data.playerId);
       } else if (data.type === 'question') {
         setQuestion(data.question);
+        setFeedback(''); // Clear feedback when a new question is loaded
+        setFeedbackVisible(false); // Hide feedback initially
+        setTimerActive(true); // Restart the timer
+        setTime(0); // Reset the timer
       }
     };
 
@@ -135,8 +144,25 @@ const Lobby = () => {
     if (answerInput.trim().toLowerCase() === question.answer.trim().toLowerCase()) {
       setFeedback('Correct!');
       setTimerActive(false); // Stop the timer
+
+      // Request the next question
+      if (wsRef.current) {
+        wsRef.current.send(JSON.stringify({ type: 'get_question' }));
+        setAnswerInput('');
+      }
     } else {
       setFeedback('Incorrect, try again.');
+      setFeedbackVisible(true); // Show feedback when incorrect
+      setTimeout(() => {
+        setFeedbackVisible(false); // Start fading out after 2 seconds
+      }, 1500);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent the default action (form submission)
+      handleSubmit();
     }
   };
 
@@ -154,10 +180,11 @@ const Lobby = () => {
             type="text"
             value={answerInput}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown} // Add this line
             placeholder="Enter your answer"
           />
           <Button onClick={handleSubmit}>Submit</Button>
-          {feedback && <Feedback correct={feedback === 'Correct!'}>{feedback}</Feedback>}
+          {feedback && <Feedback show={feedbackVisible} correct={feedback === 'Correct!'}>{feedback}</Feedback>}
         </div>
       ) : (
         <p className="heading fade-in">Loading question...</p>
