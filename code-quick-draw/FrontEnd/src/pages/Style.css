@@ -1,0 +1,235 @@
+*{
+    box-sizing: border-box;
+} 
+/* Web Page Background */
+body
+{
+    overflow: auto;
+    margin: 0;
+    background-image: url("../../public/images/Desert1.jpg");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% auto; 
+    background-attachment: fixed;
+}
+
+/*Banner*/
+.banner{
+    text-align: center; 
+    background-color: #beccd3; 
+    padding: 40px;
+    opacity: 90%;
+}
+
+/*Headings*/
+.heading {
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: white ;
+    text-shadow:
+        -1px -1px 0 #000, /* Top left shadow */
+         1px -1px 0 #000, /* Top right shadow */
+        -1px  1px 0 #000, /* Bottom left shadow */
+         1px  1px 0 #000; /* Bottom right shadow */
+}
+
+/* Logo Ontop of WebPage */
+.logo{
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    width: 100px;
+    height: 75px;
+}
+/* Thank you message */
+.thankyou{
+    color: white;
+    position: absolute;
+    top:175px;
+    right: 775px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    text-shadow:
+    -1px -1px 0 #000, /* Top left shadow */
+     1px -1px 0 #000, /* Top right shadow */
+    -1px  1px 0 #000, /* Bottom left shadow */
+     1px  1px 0 #000; /* Bottom right shadow */
+}
+
+.Quicklogo{
+    scale: 20%;
+    position: fixed;
+    right: -245px;
+    top: -500px;
+}
+.projdescript{
+    position: absolute;
+    top: 250px;
+    color:white;
+    padding: 10px;
+    opacity: 90%;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-shadow:
+        -1px -1px 0 #000, /* Top left shadow */
+         1px -1px 0 #000, /* Top right shadow */
+        -1px  1px 0 #000, /* Bottom left shadow */
+         1px  1px 0 #000; /* Bottom right shadow */
+
+}
+/* About Background*/
+.AboutGround{
+    overflow: auto;
+    margin: 0;
+    background-image: url("../../public/images/Red.jpg");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% auto; 
+    background-attachment: fixed;
+
+}
+/*The Boys*/
+.TheBoys{
+    position: absolute;
+    align-items: center;
+    scale: 20%;
+    bottom: -775px;
+    left: -750px;
+    border: 8px solid black;
+}
+
+/* Tech Logo */
+.Tech{
+    position: absolute;
+    text-align: left;
+    bottom: -625px;
+    left: -525px;
+    scale: 10%;
+    margin: 0;
+    padding: 0;
+    border: 0;   
+}
+.Whitacre{
+    position: absolute;
+    text-align: left;
+    bottom: -125px;
+    left: -475px;
+    scale: 20%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.Tech:hover{
+    transition-duration: 3s;
+    transform: rotateY(360deg);
+    
+}
+.contacts{
+    position: relative;
+    text-align: left;
+    padding:20px;
+    left:450px;
+}
+.contactlogo{
+    position: absolute;
+    left: 1275px;
+    bottom: -85px; 
+    scale: 50%;
+}
+.emaillogo{
+    position: absolute;
+    left: 975px;
+    bottom: -138px; 
+    scale: 40%;
+}
+
+
+/* Buttons CSS */
+.submit /*Button shape*/
+{
+    padding: 5px 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    border:0;   
+  
+}
+.link /*Button Text*/
+{
+    color:black;
+    background-color: transparent;
+    transition-duration: 0.4s;
+    letter-spacing: 3px;
+    font-size: 12px; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+}
+.link:hover
+{ 
+    text-shadow: 2px 2px 6px rgb(24, 23, 23); /* Add shadow to text instead of a box */
+    background-color: rgba(0, 0, 0, 0); /* Ensure background remains transparent */
+    
+}
+.buttonRow{ /*Button Alignment*/
+    position: absolute;
+    top: 30px;
+    left: 250px;
+    
+}
+
+/*Fade in for elements*/
+.fade-in {
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+  }
+}

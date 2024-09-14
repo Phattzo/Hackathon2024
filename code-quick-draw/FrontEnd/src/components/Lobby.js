@@ -160,7 +160,7 @@ const Lobby = () => {
           {feedback && <Feedback correct={feedback === 'Correct!'}>{feedback}</Feedback>}
         </div>
       ) : (
-        <p>Loading question...</p>
+        <p className="heading fade-in">Loading question...</p>
       )}
     </Container>
   );
