@@ -1,24 +1,23 @@
 import './App.css';
 import ButtonAppBar from './components/ButtonAppBar';
 import Lobby from './components/Lobby';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AboutPage from './components/AboutPage';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AboutPage from './pages/AboutPage';
+import HomePage from './pages/HomePage';
+import LinksPage from './pages/LinksPage';
+import PlayPage from './pages/PlayPage';
 
 function App() {
   return (
     <div className="App">
-      <ButtonAppBar />
-      <Lobby />
-
       <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={AboutPage} />
-          <Route component={NotFound} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contacts" element={<LinksPage />} />
+          <Route path="/play" element={<PlayPage />} />
+        </Routes>
       </Router>
-
     </div>
     
   );

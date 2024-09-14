@@ -6,7 +6,7 @@ body
 {
     overflow: auto;
     margin: 0;
-    background-image: url("images/Desert1.jpg");
+    background-image: url("../../public/images/Desert1.jpg");
     background-repeat: no-repeat;
     background-position: top;
     background-size: 100% auto; 
@@ -84,7 +84,7 @@ body
 .AboutGround{
     overflow: auto;
     margin: 0;
-    background-image: url("images/Red.jpg");
+    background-image: url("../../public/images/Red.jpg");
     background-repeat: no-repeat;
     background-position: top;
     background-size: 100% auto; 
