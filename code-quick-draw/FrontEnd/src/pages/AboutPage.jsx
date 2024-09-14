@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
 import './Style.css';
 import { Header } from '../components/Header';
 

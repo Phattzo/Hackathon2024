@@ -1,5 +1,5 @@
 import React from 'react';
-import './Style.css'; // Assuming you have corresponding CSS
+import './Style.css';
 import { Header } from '../components/Header';
 import Lobby from '../components/Lobby';
 
