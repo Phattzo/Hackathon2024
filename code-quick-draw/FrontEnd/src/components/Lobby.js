@@ -1,15 +1,98 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+`;
+
+const Title = styled.h2`
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const SubTitle = styled.h3`
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 10px;
+`;
+
+const CodeBlock = styled.pre`
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  text-align: left;
+  margin-bottom: 20px;
+`;
+
+const Input = styled.input`
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: #4CAF50;
+  }
+`;
+
+const Button = styled.button`
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const Feedback = styled.p`
+  margin-top: 15px;
+  font-size: 18px;
+  color: ${(props) => (props.correct ? 'green' : 'red')};
+  text-align: center;
+`;
+
+const Timer = styled.p`
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+`;
 
 const Lobby = () => {
   const [question, setQuestion] = useState(null);
   const [playerId, setPlayerId] = useState(null);
+  const [answerInput, setAnswerInput] = useState('');
+  const [feedback, setFeedback] = useState('');
+  const [time, setTime] = useState(0);
+  const [timerActive, setTimerActive] = useState(true); // Timer state
+  const timerRef = useRef(null);
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:3001');
 
     ws.onopen = () => {
       console.log('Connected to WebSocket server');
-      // Request a new question from the server
       ws.send(JSON.stringify({ type: 'get_question' }));
     };
 
@@ -32,20 +115,54 @@ const Lobby = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (timerActive) {
+      timerRef.current = setInterval(() => {
+        setTime(prevTime => prevTime + 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, [timerActive]);
+
+  const handleInputChange = (e) => {
+    setAnswerInput(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (answerInput.trim().toLowerCase() === question.answer.trim().toLowerCase()) {
+      setFeedback('Correct!');
+      setTimerActive(false); // Stop the timer
+    } else {
+      setFeedback('Incorrect, try again.');
+    }
+  };
+
   return (
-    <>
-    <div>
-      <h2 className="heading fade-in">Player ID: {playerId}</h2>
+    <Container>
+      <Title>Programming Quiz</Title>
+      <SubTitle>Player ID: {playerId}</SubTitle>
       {question ? (
         <div>
-          <h3 className="heading fade-in">Question: {question.question}</h3>
-          <p className="heading fade-in">Answer: {question.answer}</p>
+          <SubTitle>Language: {question.language}</SubTitle>
+          <SubTitle>Question:</SubTitle>
+          <CodeBlock>{question.question}</CodeBlock>
+          <Timer>Time Elapsed: {Math.floor(time / 60)}:{('0' + (time % 60)).slice(-2)}</Timer>
+          <Input
+            type="text"
+            value={answerInput}
+            onChange={handleInputChange}
+            placeholder="Enter your answer"
+          />
+          <Button onClick={handleSubmit}>Submit</Button>
+          {feedback && <Feedback correct={feedback === 'Correct!'}>{feedback}</Feedback>}
         </div>
       ) : (
         <p className="heading fade-in">Loading question...</p>
       )}
-    </div>
-    </>
+    </Container>
   );
 };
 
