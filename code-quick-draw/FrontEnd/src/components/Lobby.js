@@ -141,28 +141,17 @@ const Lobby = () => {
   };
 
   return (
-    <Container>
-      <Title>Programming Quiz</Title>
-      <SubTitle>Player ID: {playerId}</SubTitle>
+    <div>
+      <h2>Player ID: {playerId}</h2>
       {question ? (
         <div>
-          <SubTitle>Language: {question.language}</SubTitle>
-          <SubTitle>Question:</SubTitle>
-          <CodeBlock>{question.question}</CodeBlock>
-          <Timer>Time Elapsed: {Math.floor(time / 60)}:{('0' + (time % 60)).slice(-2)}</Timer>
-          <Input
-            type="text"
-            value={answerInput}
-            onChange={handleInputChange}
-            placeholder="Enter your answer"
-          />
-          <Button onClick={handleSubmit}>Submit</Button>
-          {feedback && <Feedback correct={feedback === 'Correct!'}>{feedback}</Feedback>}
+          <h3>Question: {question.question}</h3>
+          <p>Answer: {question.answer}</p>
         </div>
       ) : (
-        <p>Loading question...</p>
+        <p className="heading fade-in">Loading question...</p>
       )}
-    </Container>
+    </div>
   );
 };
 
