@@ -1,43 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
 import './Style.css';
+import { Header } from '../components/Header';
 
 const AboutPage = () => {
   return (
     <div className="AboutGround">
       <div className="fade-in">
-        <div className="banner">
-          <img
-            className="logo"
-            src="images/CodeQuickdrawLogo.png"
-            alt="CodeQuickdrawLogo Logo"
-          />
-        </div>
-      </div>
-
-      <div className="buttonRow">
-        <div className="fade-in">
-          <button className="submit">
-            <Link className="link" id="link" to="/">
-              Home
-            </Link>
-          </button>
-          <button className="submit">
-            <Link className="link" id="link" to="/play">
-              Play
-            </Link>
-          </button>
-          <button className="submit">
-            <Link className="link" id="link" to="/about">
-              About Us
-            </Link>
-          </button>
-          <button className="submit">
-            <Link className="link" id="link" to="/contacts">
-              Contacts
-            </Link>
-          </button>
-        </div>
+        <Header />
       </div>
 
       <div className="heading">

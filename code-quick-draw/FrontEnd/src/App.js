@@ -6,6 +6,8 @@ import AboutPage from './pages/AboutPage';
 import HomePage from './pages/HomePage';
 import LinksPage from './pages/LinksPage';
 import PlayPage from './pages/PlayPage';
+import { TempPlayPage } from './pages/TempPlayPage';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contacts" element={<LinksPage />} />
           <Route path="/play" element={<PlayPage />} />
+          <Route path="/temp-play-page" element={<TempPlayPage />} />
         </Routes>
       </Router>
     </div>
