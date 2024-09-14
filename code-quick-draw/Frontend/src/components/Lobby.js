@@ -22,8 +22,10 @@ const Lobby = () => {
     }, []);
 
     const sendMessage = (message) => {
-        if (ws) {
+        if (ws.readyState === WebSocket.OPEN) {
             ws.send(message);
+        } else {
+            console.error("WebSocket is not open. Ready state is " + ws.readyState);
         }
     };
 
