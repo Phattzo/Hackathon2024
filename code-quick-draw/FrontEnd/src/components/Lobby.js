@@ -33,17 +33,19 @@ const Lobby = () => {
   }, []);
 
   return (
+    <>
     <div>
-      <h2>Player ID: {playerId}</h2>
+      <h2 className="heading fade-in">Player ID: {playerId}</h2>
       {question ? (
         <div>
-          <h3>Question: {question.question}</h3>
-          <p>Answer: {question.answer}</p>
+          <h3 className="heading fade-in">Question: {question.question}</h3>
+          <p className="heading fade-in">Answer: {question.answer}</p>
         </div>
       ) : (
-        <p>Loading question...</p>
+        <p className="heading fade-in">Loading question...</p>
       )}
     </div>
+    </>
   );
 };
 
