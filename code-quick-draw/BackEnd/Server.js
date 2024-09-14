@@ -29,6 +29,7 @@ wss.on('connection', (ws) => {
 });
 
 // Start the server
-server.listen(3000, () => {
-    console.log('WebSocket server is running on ws://localhost:3000');
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`WebSocket server is running on ws://localhost:${PORT}`);
 });
