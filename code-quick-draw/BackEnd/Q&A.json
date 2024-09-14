@@ -16,7 +16,7 @@
     },
     {
         "language": "Python",
-        "question": "Complete the following code to output 'Hello World':\n\nprint('Hello World')",
+        "question": "Complete the following code to output 'Hello World':\n\n # Add code here",
         "answer": "print('Hello World')"
     },
     {
