@@ -24,6 +24,11 @@ export const Header = () => {
             Test
           </Link>
         </button>
+        <button className='submit'>
+          <Link className="link" id="link" to="/leaderboard">
+            Leaderboard
+          </Link>
+        </button>
       </div>
     </div>
   );

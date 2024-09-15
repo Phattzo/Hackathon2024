@@ -3,15 +3,31 @@ const http = require('http');
 const WebSocket = require('ws');
 const { spawn } = require('child_process');
 const path = require('path');
+const fs = require('fs');
+
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 const players = {};
-
 // Serve static files for the frontend (optional, adjust path as needed)
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.get('/api/leaderboard', (req, res) => {
+    console.log('Received request for leaderboard data');
+    const filePath = 'leaderBoardData.json';
+    console.log(`Reading file from: ${filePath}`);
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            res.status(500).send('Error reading leaderboard data');
+            return;
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.json(JSON.parse(data));
+    });
+});
 
 wss.on('connection', (ws) => {
     // Assign a player ID and store connection

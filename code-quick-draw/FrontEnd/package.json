@@ -4,6 +4,7 @@
   "scripts": {
     "start": "react-scripts start"
   },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "frontend": "file:",
     "react": "^18.0.0",
