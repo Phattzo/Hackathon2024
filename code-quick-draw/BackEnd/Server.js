@@ -29,10 +29,10 @@ app.get('/api/leaderboard', (req, res) => {
     });
 });
 
-app.post('/api/laderboard', (req, res) => {
+app.post('/api/leaderboard', (req, res) => {
     console.log('Received request to add new leaderboard entry');
     const newEntry = req.body;
-    const filePath = 'leaderBoardData.json';
+    const filePath = path.join(__dirname, 'leaderBoardData.json');
     
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -42,7 +42,24 @@ app.post('/api/laderboard', (req, res) => {
         }
         try {
             const jsonData = JSON.parse(data);
-            jsonData.push(newEntry);
+            
+            // Compare scores and determine rank
+            let rank = 1;
+            for (const entry of jsonData) {
+                if (entry.score < newEntry.score) {
+                    rank++;
+                }
+            }
+            newEntry.rank = rank;
+
+            // Insert the new entry at the correct position
+            jsonData.splice(rank - 1, 0, newEntry);
+
+            // Update the ranks of the following entries
+            for (let i = rank; i < jsonData.length; i++) {
+                jsonData[i].rank = i + 1;
+            }
+
             fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
                 if (writeErr) {
                     console.error('Error writing leaderboard data:', writeErr);
