@@ -81,14 +81,24 @@ const Timer = styled.p`
   margin-bottom: 20px;
 `;
 
+const Congratulations = styled.div`
+  text-align: center;
+  font-size: 24px;
+  color: #4CAF50;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Added margin-bottom for spacing */
+`;
+
 const Lobby = () => {
   const [question, setQuestion] = useState(null);
   const [playerId, setPlayerId] = useState(null);
   const [answerInput, setAnswerInput] = useState('');
   const [feedback, setFeedback] = useState('');
   const [time, setTime] = useState(0);
-  const [timerActive, setTimerActive] = useState(true); // Timer state
-  const [feedbackVisible, setFeedbackVisible] = useState(false); // Feedback visibility state
+  const [totalTime, setTotalTime] = useState(0);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [feedbackVisible, setFeedbackVisible] = useState(false);
   const timerRef = useRef(null);
   const wsRef = useRef(null);
 
@@ -108,10 +118,9 @@ const Lobby = () => {
         setPlayerId(data.playerId);
       } else if (data.type === 'question') {
         setQuestion(data.question);
-        setFeedback(''); // Clear feedback when a new question is loaded
-        setFeedbackVisible(false); // Hide feedback initially
-        setTimerActive(true); // Restart the timer
-        setTime(0); // Reset the timer
+        setFeedback('');
+        setFeedbackVisible(false);
+        setTime(0);
       }
     };
 
@@ -125,7 +134,7 @@ const Lobby = () => {
   }, []);
 
   useEffect(() => {
-    if (timerActive) {
+    if (!gameOver) {
       timerRef.current = setInterval(() => {
         setTime(prevTime => prevTime + 1);
       }, 1000);
@@ -134,35 +143,58 @@ const Lobby = () => {
     return () => {
       clearInterval(timerRef.current);
     };
-  }, [timerActive]);
+  }, [gameOver]);
 
   const handleInputChange = (e) => {
     setAnswerInput(e.target.value);
   };
 
   const handleSubmit = () => {
-    if (answerInput.trim().toLowerCase() === question.answer.trim().toLowerCase()) {
-      setFeedback('Correct!');
-      setTimerActive(false); // Stop the timer
+    if (!question) return;
 
-      // Request the next question
-      if (wsRef.current) {
-        wsRef.current.send(JSON.stringify({ type: 'get_question' }));
+    const isCorrect = answerInput.trim().toLowerCase() === question.answer.trim().toLowerCase();
+
+    if (isCorrect) {
+      setFeedback('Correct!');
+      setQuestionsAnswered(prev => prev + 1);
+      setTotalTime(prevTotal => prevTotal + time); // Update total time
+
+      if (questionsAnswered === 2) { // Changed to === to match 3 questions
+        setGameOver(true);
+      } else {
+        if (wsRef.current) {
+          wsRef.current.send(JSON.stringify({ type: 'get_question' }));
+        }
         setAnswerInput('');
+        setTime(0); // Reset time for next question
       }
     } else {
       setFeedback('Incorrect, try again.');
-      setFeedbackVisible(true); // Show feedback when incorrect
+      setFeedbackVisible(true);
       setTimeout(() => {
-        setFeedbackVisible(false); // Start fading out after 2 seconds
+        setFeedbackVisible(false);
       }, 1500);
     }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); // Prevent the default action (form submission)
+      e.preventDefault();
       handleSubmit();
+    }
+  };
+
+  const resetGame = () => {
+    setQuestion(null);
+    setPlayerId(null);
+    setAnswerInput('');
+    setFeedback('');
+    setTime(0);
+    setTotalTime(0);
+    setQuestionsAnswered(0);
+    setGameOver(false);
+    if (wsRef.current) {
+      wsRef.current.send(JSON.stringify({ type: 'get_question' }));
     }
   };
 
@@ -170,7 +202,14 @@ const Lobby = () => {
     <Container>
       <Title>Programming Quiz</Title>
       <SubTitle>Player ID: {playerId}</SubTitle>
-      {question ? (
+      {gameOver ? (
+        <div>
+          <Congratulations>
+            Congratulations! Your total time is {Math.floor(totalTime / 60)}:{('0' + (totalTime % 60)).slice(-2)}.
+          </Congratulations>
+          <Button onClick={resetGame}>Play Again</Button>
+        </div>
+      ) : question ? (
         <div>
           <SubTitle>Language: {question.language}</SubTitle>
           <SubTitle>Question:</SubTitle>
@@ -180,7 +219,7 @@ const Lobby = () => {
             type="text"
             value={answerInput}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown} // Add this line
+            onKeyDown={handleKeyDown}
             placeholder="Enter your answer"
           />
           <Button onClick={handleSubmit}>Submit</Button>
