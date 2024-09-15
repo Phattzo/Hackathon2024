@@ -4,7 +4,7 @@ export const Header = () => {
   return (
   <div>
     <div className="banner">
-        <img className="logo" src="images/CodeQuickdrawLogo.png" alt="NutriSync Logo" />
+        <img className="logo" src="images/CodeQuickdrawLogo.png" alt="QuickDraw" />
       </div>
       <div className="buttonRow fade-in">
         <button className="submit">
@@ -13,22 +13,16 @@ export const Header = () => {
         <button className="submit">
           <Link className="link" to="/play">Play</Link>
         </button>
+        <button className='submit'>
+          <Link className="link" id="link" to="/leaderboard">Leaderboard</Link>
+        </button>
         <button className="submit">
           <Link className="link" to="/about">About Us</Link>
         </button>
         <button className="submit">
-          <Link className="link" to="/contacts">Contacts</Link>
+          <Link className="link" to="/contacts">Contact</Link>
         </button>
-        <button className='submit'>
-          <Link className="link" id="link" to="/temp-play-page">
-            Test
-          </Link>
-        </button>
-        <button className='submit'>
-          <Link className="link" id="link" to="/leaderboard">
-            Leaderboard
-          </Link>
-        </button>
+       
       </div>
     </div>
   );
