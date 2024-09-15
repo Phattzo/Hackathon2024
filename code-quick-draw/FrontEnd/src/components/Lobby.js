@@ -154,7 +154,7 @@ const Lobby = () => {
             type="text"
             value={answerInput}
             onChange={handleInputChange}
-            placeholder="Enter your answer"
+            placeholder="Add code here"
           />
           <Button onClick={handleSubmit}>Submit</Button>
           {feedback && <Feedback correct={feedback === 'Correct!'}>{feedback}</Feedback>}
