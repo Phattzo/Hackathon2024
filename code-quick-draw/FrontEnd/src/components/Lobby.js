@@ -86,7 +86,7 @@ const Congratulations = styled.div`
   font-size: 24px;
   color: #4CAF50;
   margin-top: 20px;
-  margin-bottom: 20px; /* Added margin-bottom for spacing */
+  margin-bottom: 20px;
 `;
 
 const StartPage = styled.div`
@@ -146,7 +146,7 @@ const Lobby = () => {
   useEffect(() => {
     if (!gameOver && gameStarted) {
       timerRef.current = setInterval(() => {
-        setTime(prevTime => prevTime + 1);
+        setTime((prevTime) => prevTime + 1);
       }, 1000);
     }
 
@@ -154,6 +154,12 @@ const Lobby = () => {
       clearInterval(timerRef.current);
     };
   }, [gameOver, gameStarted]);
+
+  useEffect(() => {
+    if (gameOver) {
+      submitScore(); // Ensure the score is submitted when game is over
+    }
+  }, [gameOver]);
 
   const handleInputChange = (e) => {
     setAnswerInput(e.target.value);
@@ -166,18 +172,20 @@ const Lobby = () => {
 
     if (isCorrect) {
       setFeedback('Correct!');
-      setQuestionsAnswered(prev => prev + 1);
-      setTotalTime(prevTotal => prevTotal + time); // Update total time
+      const newQuestionsAnswered = questionsAnswered + 1;
+      const newTotalTime = totalTime + time;
 
-      if (questionsAnswered === 2) { // Changed to === to match 3 questions
-        setGameOver(true);
-        submitScore(); // Submit score when game is over
+      setQuestionsAnswered(newQuestionsAnswered);
+      setTotalTime(newTotalTime);
+
+      if (newQuestionsAnswered === 3) {
+        setGameOver(true); // This will trigger the useEffect for submitting the score
       } else {
+        setAnswerInput('');
+        setTime(0);
         if (wsRef.current) {
           wsRef.current.send(JSON.stringify({ type: 'get_question' }));
         }
-        setAnswerInput('');
-        setTime(0); // Reset time for next question
       }
     } else {
       setFeedback('Incorrect, try again.');
@@ -194,6 +202,8 @@ const Lobby = () => {
         name: playerId,
         score: totalTime,
       };
+      
+      console.log(score.score); // Log the total time
 
       fetch('/api/leaderboard', {
         method: 'POST',
@@ -258,7 +268,7 @@ const Lobby = () => {
       ) : gameOver ? (
         <div>
           <Congratulations>
-            Congratulations {playerId}! Your total time is {Math.floor(totalTime / 60)}:{('0' + (totalTime % 60)).slice(-2)}.
+            Congratulations {playerId}! Your total time is {totalTime}.
           </Congratulations>
           <Button onClick={resetGame}>Play Again</Button>
         </div>
