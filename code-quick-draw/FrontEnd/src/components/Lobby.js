@@ -181,7 +181,6 @@ const Lobby = () => {
             value={answerInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown} // Add this line
-            placeholder="Enter your answer"
             placeholder="Add code here"
           />
           <Button onClick={handleSubmit}>Submit</Button>
