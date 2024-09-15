@@ -7,38 +7,33 @@ const LinksPage = () => {
     <div className="fade-in">
       <Header />
 
-      {/* Main Page Heading */}
-      <div className="heading fade-in">
-        <h1>Explore these links if you'd like to get in touch and connect with us!</h1>
+       {/* Page Header */}
+       <div className="heading">
+        <h1>Contact Us</h1>
+      </div>
 
-        {/* Contact Links */}
-        <h2 className="contacts">
-          Jacob Bailey:<br />
-          <a href="https://www.linkedin.com/in/jacob-c-bailey/">LinkedIn</a><br />
-          <a href="mailto:bai10224@ttu.edu">Email</a>
-        </h2>
-        <h2 className="contacts">
-          David Drewfs:<br />
-          <a href="https://www.linkedin.com/in/daviddrewfs/">LinkedIn</a><br />
-          <a href="mailto:ddrewfs@ttu.edu">Email</a>
-        </h2>
-        <h2 className="contacts">
-          Andrew Marra:<br />
-          <a href="https://www.linkedin.com/in/andrew-marra-63b485232/">LinkedIn</a><br />
-          <a href="mailto:amarra@ttu.edu">Email</a>
-        </h2>
-        <h2 className="contacts">
-          Bhumik Bhakta:<br />
-          <a href="https://www.linkedin.com/in/bhumikbhakta/">LinkedIn</a><br />
-          <a href="mailto:bhumbhak@ttu.edu">Email</a>
-        </h2>
+      {/* Contact Links */}
+      <div className="contacts">
+        <h2 className="contact-name">Jacob Bailey:</h2>
+        <a className="contact-link" href="https://www.linkedin.com/in/jacob-c-bailey/">LinkedIn</a><br />
+        <a className="contact-link" href="mailto:bai10224@ttu.edu">Email</a>
+
+        <h2 className="contact-name">David Drewfs:</h2>
+        <a className="contact-link" href="https://www.linkedin.com/in/daviddrewfs/">LinkedIn</a><br />
+        <a className="contact-link" href="mailto:ddrewfs@ttu.edu">Email</a>
+
+        <h2 className="contact-name">Andrew Marra:</h2>
+        <a className="contact-link" href="https://www.linkedin.com/in/andrew-marra-63b485232/">LinkedIn</a><br />
+        <a className="contact-link" href="mailto:amarra@ttu.edu">Email</a>
+
+        <h2 className="contact-name">Bhumik Bhakta:</h2>
+        <a className="contact-link" href="https://www.linkedin.com/in/bhumikbhakta/">LinkedIn</a><br />
+        <a className="contact-link" href="mailto:bhumbhak@ttu.edu">Email</a>
       </div>
 
       {/* Logos */}
-      <div className="fade-in">
-        <img className="contactlogo" src="images/linkedin.png" alt="LinkedIn Logo" />
-        <img className="emaillogo" src="images/email.png" alt="Email Icon" />
-      </div>
+      <img className="contactlogo" src="images/linkedin.png" alt="LinkedIn Logo" />
+      <img className="emaillogo" src="images/email.png" alt="Email Logo" />
     </div>
   );
 };
