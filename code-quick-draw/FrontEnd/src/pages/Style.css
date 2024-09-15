@@ -112,6 +112,12 @@ scale: 50%;
   right: -245px;
   top: -450px
 }
+.Quicklogo2{
+  scale: 20%;
+  position: absolute;
+  right: -225px;
+  top: -350px
+}
 /* Play heading */
 .projdescript{
   position: absolute;

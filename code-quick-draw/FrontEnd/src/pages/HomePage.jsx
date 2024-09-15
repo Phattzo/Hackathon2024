@@ -9,6 +9,12 @@ const HomePage = () => {
 
   {/* HackWest Logo */}
   <img className="hacklogo" src="images/HackWestlogo.png" alt="HackWest Logo" />
+      
+      {/* Our Logo */}
+      <div className="Quicklogo2">
+        <img src="images/CodeQuickdrawLogo.png" alt="Quicklogo" />
+      </div>
+
 
 {/* Main Page Heading */}
 <div className="heading">
