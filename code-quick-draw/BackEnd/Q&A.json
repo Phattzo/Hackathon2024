@@ -46,37 +46,52 @@
     },
     {
         "language": "Java",
-        "question": "Write a method that returns the first character of a string.\n\n```java\npublic char getFirstChar(String str) {\n    // Add code here\n}\n```",
+        "question": "Write a method that returns the first character of a string.\n\npublic char getFirstChar(String str) {\n    // Add code here\n}\n",
         "answer": "return str.charAt(0);"
     },
     {
         "language": "Python",
-        "question": "Write a function to return the minimum of two numbers.\n\n```python\ndef min_of_two(a, b):\n    # Add code here\n```",
+        "question": "Write a function to return the minimum of two numbers.\n\ndef min_of_two(a, b):\n    # Add code here\n",
         "answer": "return min(a, b)"
     },
     {
         "language": "Python",
-        "question": "Write a function to count the occurrences of a substring in a string.\n\n```python\ndef count_substring(s, sub):\n    # Add code here\n```",
+        "question": "Write a function to count the occurrences of a substring in a string.\n\ndef count_substring(s, sub):\n    # Add code here\n",
         "answer": "return s.count(sub)"
     },
     {
         "language": "C",
-        "question": "Write a function to check if a number is even.\n\n```c\nint isEven(int num) {\n    // Add code here\n}\n```",
+        "question": "Write a function to check if a number is even.\n\nint isEven(int num) {\n    // Add code here\n}\n",
         "answer": "return num % 2 == 0;"
     },
     {
         "language": "C",
-        "question": "Write a function that returns the length of a string.\n\n```c\nint stringLength(char* str) {\n    // Add code here\n}\n```",
+        "question": "Write a function that returns the length of a string.\n\nint stringLength(char* str) {\n    // Add code here\n}\n",
         "answer": "return strlen(str);"
     },
     {
         "language": "Java",
-        "question": "Write a method to concatenate two strings.\n\n```java\npublic String concatenate(String str1, String str2) {\n    // Add code here\n}\n```",
+        "question": "Write a method to concatenate two strings.\n\npublic String concatenate(String str1, String str2) {\n    // Add code here\n}\n",
         "answer": "return str1 + str2;"
     },
     {
         "language": "Java",
-        "question": "Write a method that returns the length of an array.\n\n```java\npublic int arrayLength(int[] arr) {\n    // Add code here\n}\n```",
+        "question": "Write a method that returns the length of an array.\n\npublic int arrayLength(int[] arr) {\n    // Add code here\n}\n",
         "answer": "return arr.length;"
+    },
+    {
+        "language": "Java",
+        "question": "Write a method to check if a number is odd.\n\npublic boolean isOdd(int num) {\n    // Add code here\n}\n",
+        "answer": "return num % 2 != 0;"
+    },
+    {
+        "language": "Java",
+        "question": "Write a method that returns the first element of an array.\n\npublic int getFirst(int[] arr) {\n    // Add code here\n}\n",
+        "answer": "return arr[0];"
+    },
+    {
+        "language": "C",
+        "question": "Write a function that checks if a number is negative.\n\nint isNegative(int num) {\n    // Add code here\n}\n",
+        "answer": "return num < 0;"
     }
 ]
