@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
-
+const bodyParser = require('body-parser');
 
 const app = express();
 const server = http.createServer(app);
@@ -14,6 +14,8 @@ const players = {};
 // Serve static files for the frontend (optional, adjust path as needed)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
 
 app.get('/api/leaderboard', (req, res) => {
     console.log('Received request for leaderboard data');
@@ -29,7 +31,7 @@ app.get('/api/leaderboard', (req, res) => {
     });
 });
 
-app.post('/api/laderboard', (req, res) => {
+app.post('/api/leaderboard', (req, res) => {
     console.log('Received request to add new leaderboard entry');
     const newEntry = req.body;
     const filePath = 'leaderBoardData.json';
@@ -74,6 +76,29 @@ wss.on('connection', (ws) => {
             }).catch((err) => {
                 console.error('Error fetching question from Python:', err);
                 ws.send(JSON.stringify({ type: 'error', message: 'Could not fetch question' }));
+            });
+        } else if (parsedMessage.type === 'submit_score') {
+            const { name, totalTime } = parsedMessage;
+            const newEntry = { name, totalTime };
+
+            // Add new entry to the leaderboard
+            const filePath = 'leaderBoardData.json';
+            fs.readFile(filePath, 'utf8', (err, data) => {
+                if (err) {
+                    console.error('Error reading leaderboard data:', err);
+                    return;
+                }
+                try {
+                    const jsonData = JSON.parse(data);
+                    jsonData.push(newEntry);
+                    fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
+                        if (writeErr) {
+                            console.error('Error writing leaderboard data:', writeErr);
+                        }
+                    });
+                } catch (parseErr) {
+                    console.error('Error parsing JSON:', parseErr);
+                }
             });
         }
     });
