@@ -9,7 +9,7 @@ const PlayPage = () => {
       <Header></Header>
       {/* Our Logo */}
       <div className="Quicklogo fade-in">
-        <img src="images/CodeQuickdrawLogo.png" alt="Quick Draw Logo" />
+        <img src="" alt="Quick Draw Logo" />
       </div>
 
       <Lobby />
