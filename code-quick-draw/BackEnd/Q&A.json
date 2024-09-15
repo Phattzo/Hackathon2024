@@ -32,7 +32,7 @@
     {
         "language": "C",
         "question": "Complete the following code to print 'Hello World':\n\n#include <stdio.h>\n\nint main() {\n    // Add code here\n    return 0;\n}",
-        "answer": "printf(\"Hello World");"
+        "answer": "printf(\"Hello World\n\");"
     },
     {
         "language": "C",
