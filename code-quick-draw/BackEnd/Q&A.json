@@ -1,7 +1,7 @@
 [
     {
         "language": "Java",
-        "question": "Complete the following code to output 'Hello World':\n\npublic class MyClass {\n  public static void main(String[] args) {\n    // Add code here\n  }\n}",
+        "question": "Complete the following code to print 'Hello World':\n\npublic class MyClass {\n  public static void main(String[] args) {\n    // Add code here\n  }\n}",
         "answer": "System.out.println(\"Hello World\");"
     },
     {
@@ -11,12 +11,12 @@
     },
     {
         "language": "Java",
-        "question": "Complete the following code to output the string 'Java Rocks!':\n\npublic class MyClass {\n  public static void main(String[] args) {\n    // Add code here\n  }\n}",
+        "question": "Complete the following code to print the string 'Java Rocks!':\n\npublic class MyClass {\n  public static void main(String[] args) {\n    // Add code here\n  }\n}",
         "answer": "System.out.println(\"Java Rocks!\");"
     },
     {
         "language": "Python",
-        "question": "Complete the following code to output 'Hello World':\n\n # Add code here",
+        "question": "Complete the following code to print 'Hello World':\n\ndef helloWorld():\n    # Add code here\n    pass",
         "answer": "print('Hello World')"
     },
     {
@@ -31,17 +31,52 @@
     },
     {
         "language": "C",
-        "question": "Complete the following code to output 'Hello World':\n\n#include <stdio.h>\n\nint main() {\n    // Add code here\n    return 0;\n}",
+        "question": "Complete the following code to print 'Hello World':\n\n#include <stdio.h>\n\nint main() {\n    // Add code here\n    return 0;\n}",
         "answer": "printf(\"Hello World\n\");"
     },
     {
         "language": "C",
-        "question": "Complete the following function to return the maximum of two integers:\n\nint max(int a, int b) {\n    // Add code here\n}",
+        "question": "Complete the following function to return the maximum of two integers:\n\nint max(int a, int b) {\n    // Add code here\n PS: USE TERNARY FORM \n}",
         "answer": "return (a > b) ? a : b;"
     },
     {
         "language": "C",
         "question": "Complete the following code to check if a number is positive:\n\n#include <stdbool.h>\n\nbool is_positive(int num) {\n    // Add code here\n}\n",
         "answer": "return num > 0;"
+    },
+    {
+        "language": "Java",
+        "question": "Write a method that returns the first character of a string.\n\n```java\npublic char getFirstChar(String str) {\n    // Add code here\n}\n```",
+        "answer": "return str.charAt(0);"
+    },
+    {
+        "language": "Python",
+        "question": "Write a function to return the minimum of two numbers.\n\n```python\ndef min_of_two(a, b):\n    # Add code here\n```",
+        "answer": "return min(a, b)"
+    },
+    {
+        "language": "Python",
+        "question": "Write a function to count the occurrences of a substring in a string.\n\n```python\ndef count_substring(s, sub):\n    # Add code here\n```",
+        "answer": "return s.count(sub)"
+    },
+    {
+        "language": "C",
+        "question": "Write a function to check if a number is even.\n\n```c\nint isEven(int num) {\n    // Add code here\n}\n```",
+        "answer": "return num % 2 == 0;"
+    },
+    {
+        "language": "C",
+        "question": "Write a function that returns the length of a string.\n\n```c\nint stringLength(char* str) {\n    // Add code here\n}\n```",
+        "answer": "return strlen(str);"
+    },
+    {
+        "language": "Java",
+        "question": "Write a method to concatenate two strings.\n\n```java\npublic String concatenate(String str1, String str2) {\n    // Add code here\n}\n```",
+        "answer": "return str1 + str2;"
+    },
+    {
+        "language": "Java",
+        "question": "Write a method that returns the length of an array.\n\n```java\npublic int arrayLength(int[] arr) {\n    // Add code here\n}\n```",
+        "answer": "return arr.length;"
     }
 ]
