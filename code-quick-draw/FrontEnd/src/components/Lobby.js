@@ -250,6 +250,7 @@ const Lobby = () => {
             type="text"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleStartGame()}
             placeholder="Enter your name"
           />
           <Button onClick={handleStartGame}>Start Game</Button>
