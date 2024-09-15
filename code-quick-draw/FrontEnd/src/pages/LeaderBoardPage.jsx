@@ -28,12 +28,13 @@ const Th = styled.th`
   background-color: #4CAF50;
   color: white;
   padding: 10px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 `;
 
 const Td = styled.td`
   padding: 10px;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 `;
 

@@ -17,7 +17,7 @@
     {
         "language": "Python",
         "question": "Complete the following code to print 'Hello World':\n\ndef helloWorld():\n    # Add code here\n    pass",
-        "answer": "print('Hello World')"
+        "answer": "print(\"Hello World\")"
     },
     {
         "language": "Python",
@@ -33,11 +33,6 @@
         "language": "C",
         "question": "Complete the following code to print 'Hello World':\n\n#include <stdio.h>\n\nint main() {\n    // Add code here\n    return 0;\n}",
         "answer": "printf(\"Hello World\");"
-    },
-    {
-        "language": "C",
-        "question": "Complete the following function to return the maximum of two integers:\n\nint max(int a, int b) {\n    // Add code here\n PS: USE TERNARY FORM \n}",
-        "answer": "return (a > b) ? a : b;"
     },
     {
         "language": "C",
