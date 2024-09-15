@@ -16,7 +16,7 @@
     },
     {
         "language": "Python",
-        "question": "Complete the following code to output 'Hello World':\n\nprint('Hello World')",
+        "question": "Complete the following code to output 'Hello World':\n\n # Add code here",
         "answer": "print('Hello World')"
     },
     {
@@ -32,7 +32,7 @@
     {
         "language": "C",
         "question": "Complete the following code to output 'Hello World':\n\n#include <stdio.h>\n\nint main() {\n    // Add code here\n    return 0;\n}",
-        "answer": "printf(\"Hello World\\n\");"
+        "answer": "printf(\"Hello World\n\");"
     },
     {
         "language": "C",
