@@ -29,6 +29,35 @@ app.get('/api/leaderboard', (req, res) => {
     });
 });
 
+app.post('/api/laderboard', (req, res) => {
+    console.log('Received request to add new leaderboard entry');
+    const newEntry = req.body;
+    const filePath = 'leaderBoardData.json';
+    
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading leaderboard data:', err);
+            res.status(500).send('Error reading leaderboard data');
+            return;
+        }
+        try {
+            const jsonData = JSON.parse(data);
+            jsonData.push(newEntry);
+            fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
+                if (writeErr) {
+                    console.error('Error writing leaderboard data:', writeErr);
+                    res.status(500).send('Error writing leaderboard data');
+                    return;
+                }
+                res.status(201).send('New leaderboard entry added successfully');
+            });
+        } catch (parseErr) {
+            console.error('Error parsing JSON:', parseErr);
+            res.status(500).send('Error parsing leaderboard data');
+        }
+    });
+});
+
 wss.on('connection', (ws) => {
     // Assign a player ID and store connection
     const playerId = Math.random().toString(36).substring(2, 15);
